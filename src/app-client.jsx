@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { Router, Route, browserHistory, IndexRoute } from "react-router";
 import reduxThunk from "redux-thunk";
-import {AUTH_USER} from "./actions/types";
+import { AUTH_USER } from "./actions/types";
 import requireAuth from "./components/hoc/requireAuth";
 import SignIn from "./components/auth/SignIn";
 import SignOut from "./components/auth/SignOut";
@@ -41,6 +41,6 @@ ReactDOM.render(
             </Route>
         </Router>
     </Provider>
-    , document.querySelector('.app')
+    , document.querySelector(".app")
 );
 
