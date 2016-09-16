@@ -1,3 +1,4 @@
+/* @flow */
 "use strict";
 
 import React, { Component } from "react";
@@ -20,7 +21,7 @@ export default (ComposedComponent) => {
         render() {
             return (
                 <ComposedComponent {...this.props} />
-            )
+            );
         }
     }
 
