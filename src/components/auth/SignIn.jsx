@@ -14,12 +14,12 @@ class SignIn extends Component {
         this._bind("_onSubmit");
     }
 
-    _bind(...methods: string[]) {
+    _bind(...methods) {
         methods.forEach(
-            (method: string) => this[method] = this[method].bind(this));
+            method => this[method] = this[method].bind(this));
     }
 
-    _onSubmit({email, password}: {email: string, password: string}) {
+    _onSubmit({email, password}) {
         this.props.signInUser(email, password);
     }
 

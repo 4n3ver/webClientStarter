@@ -5,7 +5,7 @@ import { browserHistory } from "react-router";
 import { API_URL } from "../config";
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_USER_DATA } from "./types";
 
-const createPostRequest = (endpoint: string, objectPayload) =>
+const createPostRequest = (endpoint, objectPayload) =>
     new Request(`${API_URL}${endpoint}`, {
         method : "POST",
         headers: {
@@ -16,8 +16,8 @@ const createPostRequest = (endpoint: string, objectPayload) =>
 
 // this action creator make use of redux-thunk middleware
 // redux thunk allow us to dispatch multiple action instead of just one
-const authenticate = (endpoint: string) =>
-    (email: string, password: string) =>
+const authenticate = endpoint =>
+    (email, password) =>
         dispatch =>
             fetch(
                 createPostRequest(endpoint, {
@@ -45,20 +45,21 @@ export const signInUser = authenticate("/signin");
 export const signUpUser = authenticate("/signup");
 export const signOutUser = () => {
     localStorage.removeItem("token");
-    return {type: UNAUTH_USER}
+    return {type: UNAUTH_USER};
 };
 
-export const showAuthError = (error: string) => ({
+export const showAuthError = error => ({
     type   : AUTH_ERROR,
     payload: error
 });
 
 // demo on how to do auth get
-export const fetchUserData = (endpoint: string) => dispatch =>
-    fetch(`${API_URL}${endpoint}`, {
-              method : "GET",
-              headers: {"Authorization": localStorage.getItem("token")}
-          }
+export const fetchUserData = endpoint => dispatch =>
+    fetch(`${API_URL}${endpoint}`,
+        {
+            method : "GET",
+            headers: {"Authorization": localStorage.getItem("token")}
+        }
     ).then(
         response => response.json()
     ).then(
@@ -77,4 +78,4 @@ export default {
     signOutUser,
     showAuthError,
     fetchUserData
-}
+};

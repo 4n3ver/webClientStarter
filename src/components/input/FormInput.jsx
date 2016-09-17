@@ -10,7 +10,7 @@ class FormInput extends Component {
     }
 
     _bind(...methods) {
-        methods.forEach((method) => this[method] = this[method].bind(this));
+        methods.forEach(method => this[method] = this[method].bind(this));
     }
 
     render() {
@@ -45,7 +45,7 @@ FormInput.defaultProps = {};
 
 export default FormInput;
 
-export const required = (...fieldName: string[]) => values => {
+export const required = (...fieldName) => values => {
     const errors = {};
     fieldName.forEach(name => !values[name]
         ? errors[name] = "Required!"

@@ -1,16 +1,17 @@
+/* @flow */
 "use strict";
 
 const path = require("path");
-const fs = require('fs');
+const fs = require("fs");
 
 let nodeModules = {};
-fs.readdirSync('node_modules')
-  .filter((x) => ['.bin'].indexOf(x) === -1)
-  .forEach((mod) => nodeModules[mod] = 'commonjs ' + mod);
+fs.readdirSync("node_modules")
+  .filter((x) => [".bin"].indexOf(x) === -1)
+  .forEach((mod) => nodeModules[mod] = "commonjs " + mod);
 
 module.exports = [
     {
-        name: 'Client Build',
+        name: "Client Build",
         entry : {
             app: path.resolve(__dirname, "src/app-client.jsx"),
         },
@@ -18,7 +19,7 @@ module.exports = [
             path    : path.join(__dirname, "build", "public"),
             filename: "js/[name].bundle.js"
         },
-        target: 'web',
+        target: "web",
         module: {
             loaders: [
                 {
@@ -46,7 +47,7 @@ module.exports = [
             ]
         },
         resolve: {
-            extensions: ['', '.js', '.jsx']
+            extensions: ["", ".js", ".jsx"]
         },
         devServer: {
             historyApiFallback: true,

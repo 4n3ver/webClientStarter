@@ -14,12 +14,12 @@ class SignUp extends Component {
         this._bind("_onSubmit");
     }
 
-    _bind(...methods: string[]) {
+    _bind(...methods) {
         methods.forEach(
-            (method: string) => this[method] = this[method].bind(this));
+            method => this[method] = this[method].bind(this));
     }
 
-    _onSubmit({email, password}: {email: string, password: string}) {
+    _onSubmit({email, password}) {
         // assume password and confirm password are the same
         this.props.signUpUser(email, password);
     }
@@ -86,10 +86,10 @@ const mapDispatchToProps = {
 const validateForm = values => {
     const errors = required("email", "password", "confirmPassword")(values);
     if (values.password && values.password.length < 6) {
-        errors.password = "Password has to be greater than 6 characters!"
+        errors.password = "Password has to be greater than 6 characters!";
     }
     if (values.confirmPassword && values.password !== values.confirmPassword) {
-        errors.confirmPassword = "Password do not match!"
+        errors.confirmPassword = "Password do not match!";
     }
     return errors;
 };

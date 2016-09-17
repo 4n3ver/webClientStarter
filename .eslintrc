@@ -18,12 +18,14 @@
     "react"
   ],
   "rules": {
-    "no-unused-vars": [
-      "warn"
-    ],
+    "no-console": 0,
+    "no-unused-vars": 0,
     "indent": [
       "error",
-      4
+      4,
+      {
+        "SwitchCase": 1
+      }
     ],
     "linebreak-style": [
       "error",
