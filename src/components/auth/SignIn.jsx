@@ -6,12 +6,16 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import FormInput, { required } from "../input/FormInput";
-import { signInUser } from "../../actions";
+import { signInUser, showAuthError } from "../../actions";
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this._bind("_onSubmit");
+    }
+
+    componentWillMount() {
+        this.props.showAuthError("");  // remove any error before first render
     }
 
     _bind(...methods) {
@@ -69,7 +73,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    signInUser
+    signInUser,
+    showAuthError
 };
 
 export default compose(

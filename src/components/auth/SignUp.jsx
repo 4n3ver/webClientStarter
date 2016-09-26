@@ -6,12 +6,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import FormInput, { required } from "../input/FormInput";
-import { signUpUser } from "../../actions";
+import { signUpUser, showAuthError } from "../../actions";
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this._bind("_onSubmit");
+    }
+
+    componentWillMount() {
+        this.props.showAuthError("");  // remove any error before first render
     }
 
     _bind(...methods) {
@@ -79,7 +83,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    signUpUser
+    signUpUser,
+    showAuthError
 };
 
 // TODO: refactor this some other time

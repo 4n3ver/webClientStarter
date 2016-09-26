@@ -14,6 +14,11 @@ const createPostRequest = (endpoint, objectPayload) =>
         body   : JSON.stringify(objectPayload)
     });
 
+export const showAuthError = error => ({
+    type   : AUTH_ERROR,
+    payload: error
+});
+
 // this action creator make use of redux-thunk middleware
 // redux thunk allow us to dispatch multiple action instead of just one
 const authenticate = endpoint =>
@@ -47,11 +52,6 @@ export const signOutUser = () => {
     localStorage.removeItem("token");
     return {type: UNAUTH_USER};
 };
-
-export const showAuthError = error => ({
-    type   : AUTH_ERROR,
-    payload: error
-});
 
 // demo on how to do auth get
 export const fetchUserData = endpoint => dispatch =>

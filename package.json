@@ -10,7 +10,7 @@
     "clean": "rm -rf build/",
     "build": "webpack --progress --colors",
     "prestart": "npm run build",
-    "start": "",
+    "start": "python3 -m http.server 7777",
     "poststart": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
