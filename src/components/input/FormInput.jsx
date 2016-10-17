@@ -14,12 +14,12 @@ class FormInput extends Component {
     }
 
     render() {
-        let hasError = this.props.meta.touched && this.props.meta.error;
+        const hasError = this.props.meta.touched && this.props.meta.error;
         return (
             <div
                 className={`field${hasError
-                                ? " error"
-                                : ""}`}>
+                    ? " error"
+                    : ""}`}>
                 <label>{this.props.label}</label>
                 <input
                     {...this.props.input}
@@ -31,7 +31,6 @@ class FormInput extends Component {
                     {this.props.meta.error}
                 </div>}
             </div>
-
         );
     }
 }
@@ -45,11 +44,19 @@ FormInput.defaultProps = {};
 
 export default FormInput;
 
-export const required = (...fieldName) => values => {
-    const errors = {};
+export const required = (...fieldName) => (values, props, errors = {}) => {
     fieldName.forEach(name => !values[name]
         ? errors[name] = "Required!"
         : null
     );
     return errors;
 };
+
+export const pattern = (pattern, errorMessage, ...fieldName) =>
+    (values, errors = {}) => {
+        fieldName.forEach(name => values[name] && !pattern.test(values[name])
+            ? errors[name] = `${name}: ${errorMessage}`
+            : null
+        );
+        return errors;
+    };

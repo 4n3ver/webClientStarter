@@ -88,8 +88,8 @@ const mapDispatchToProps = {
 };
 
 // TODO: refactor this some other time
-const validateForm = values => {
-    const errors = required("email", "password", "confirmPassword")(values);
+const validateForm = (values, props) => {
+    const errors = required("email", "password", "confirmPassword")(values, props);
     if (values.password && values.password.length < 6) {
         errors.password = "Password has to be greater than 6 characters!";
     }
