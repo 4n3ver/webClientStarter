@@ -9,43 +9,37 @@ class Header extends Component {
     _authLink() {
         if (this.props.isAuthenticated) {
             return (
-                <span className="item">
-                    <Link to="/signout">
+                <Link to="/signout">
+                    <a className="item">
                         Sign out
-                    </Link>
-                </span>
+                    </a>
+                </Link>
             );
         } else {
             return [
-                <span className="item" key={1}>
-                    <Link to="/signin">
-                        Sign in
-                    </Link>
-                </span>,
-                <span className="item" key={2}>
-                    <Link to="/signup">
-                        Sign up
-                    </Link>
-                </span>
+                <Link className="item" key={1} to="/signin">
+                    Sign in
+                </Link>,
+                <Link className="item" key={2} to="/signup">
+                    Sign up
+                </Link>
             ];
         }
     }
 
     render() {
         return (
-            <div className="ui fixed inverted segment">
-                <div className="ui inverted secondary pointing menu container">
-                    <span className="item">
-                        <Link to="/">
-                            Home
-                        </Link>
-                    </span>
-                    <span className="item">
-                        <Link to="/resources">
-                            Resources
-                        </Link>
-                    </span>
-                    {this._authLink()}
+            <div className="ui fixed inverted menu">
+                <div className="ui container">
+                    <Link className="header item" to="/">
+                        Home
+                    </Link>
+                    <Link className="item" to="/resources" >
+                        Resources
+                    </Link>
+                    <div className="right menu">
+                        {this._authLink()}
+                    </div>
                 </div>
             </div>
         );

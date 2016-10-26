@@ -3,28 +3,39 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchUserData } from "../actions";
+import { testAuth } from "../actions";
 
 class Dummy extends Component {
-    componentWillMount() {
-        this.props.fetchUserData("/");
+    constructor(props) {
+        super(props);
+        this._bind();
+        this.state = {
+            resp: null
+        };
+    }
+
+    _bind(...methods) {
+        methods.forEach(
+            method => this[method] = this[method].bind(this));
+    }
+
+    componentDidMount() {
+        this.props.testAuth(resp => this.setState({resp: resp.message}));
     }
 
     render() {
         return (
             <div className="ui segment">
-                {this.props.userData && this.props.userData.message}
+                {this.state.resp}
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    userData: state.auth.userData
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-    fetchUserData
+    testAuth
 };
 
 export default connect(

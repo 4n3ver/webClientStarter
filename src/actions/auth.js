@@ -3,7 +3,8 @@
 
 import { browserHistory } from "react-router";
 import { API_URL } from "../config";
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_USER_DATA } from "./types";
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from "./types";
+import { get } from "../utils/auth";
 
 const createPostRequest = (endpoint, objectPayload) =>
     new Request(`${API_URL}${endpoint}`, {
@@ -53,29 +54,22 @@ export const signOutUser = () => {
     return {type: UNAUTH_USER};
 };
 
-// demo on how to do auth get
-export const fetchUserData = endpoint => dispatch =>
-    fetch(`${API_URL}${endpoint}`,
-        {
-            method : "GET",
-            headers: {"Authorization": localStorage.getItem("token")}
-        }
-    ).then(
-        response => response.json()
-    ).then(
-        data =>
-            dispatch(
-                {
-                    type   : FETCH_USER_DATA,
-                    payload: data
-                }
-            )
-    );
+// TODO: Remove this ASAP
+// BAD EXAMPLE!
+export const testAuth = fn => get(
+    "/",
+    (dispatch, data) => {
+        fn(data);
+    },
+    (dispatch, reason) => {
+        fn(reason);
+    }
+);
 
 export default {
     signInUser,
     signUpUser,
     signOutUser,
     showAuthError,
-    fetchUserData
+    testAuth
 };

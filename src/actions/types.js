@@ -1,7 +1,6 @@
 /* @flow */
 "use strict";
 
-export const AUTH_USER = "aUtH_uSeR";
-export const UNAUTH_USER = "unAuTH_USER";
-export const AUTH_ERROR = "AuTH_ERRor";
-export const FETCH_USER_DATA = "FETCH_user_DATA";
+export const AUTH_USER = "auth/AUTH_USER";
+export const UNAUTH_USER = "auth/UNAUTH_USER";
+export const AUTH_ERROR = "auth/AUTH_ERROR";

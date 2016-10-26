@@ -1,3 +1,4 @@
+
 /* @flow */
 "use strict";
 
@@ -21,13 +22,19 @@ class FormInput extends Component {
                     ? " error"
                     : ""}`}>
                 <label>{this.props.label}</label>
-                <input
-                    {...this.props.input}
-                    type={this.props.type}
-                    placeholder={this.props.placeholder}
-                />
+                <div className={`ui input${this.props.children
+                    ? " action"
+                    : ""}`}>
+                    <input
+                        {...this.props.input}
+                        {...this.props.attr}
+                        type={this.props.type}
+                        placeholder={this.props.placeholder}
+                    />
+                    {this.props.children}
+                </div>
                 {hasError &&
-                <div className="ui error message">
+                <div className="ui mini pointing basic red label">
                     {this.props.meta.error}
                 </div>}
             </div>
@@ -37,7 +44,8 @@ class FormInput extends Component {
 
 FormInput.propTypes = {
     name: React.PropTypes.string.isRequired,
-    type: React.PropTypes.string.isRequired
+    type: React.PropTypes.string.isRequired,
+    attr: React.PropTypes.object
 };
 
 FormInput.defaultProps = {};
@@ -53,7 +61,7 @@ export const required = (...fieldName) => (values, props, errors = {}) => {
 };
 
 export const pattern = (pattern, errorMessage, ...fieldName) =>
-    (values, errors = {}) => {
+    (values, props, errors = {}) => {
         fieldName.forEach(name => values[name] && !pattern.test(values[name])
             ? errors[name] = `${name}: ${errorMessage}`
             : null

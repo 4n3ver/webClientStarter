@@ -4,8 +4,7 @@
 import {
     AUTH_USER,
     UNAUTH_USER,
-    AUTH_ERROR,
-    FETCH_USER_DATA
+    AUTH_ERROR
 } from "../actions/types";
 
 export default (state = {}, action) => {
@@ -22,8 +21,6 @@ export default (state = {}, action) => {
             });
         case AUTH_ERROR:
             return Object.assign({}, state, {error: action.payload});
-        case FETCH_USER_DATA:
-            return Object.assign({}, state, {userData: action.payload});
         default:
             return state;
     }
