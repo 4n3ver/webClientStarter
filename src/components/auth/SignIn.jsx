@@ -5,8 +5,9 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import FormInput, { required } from "../input/FormInput";
+import FormInput from "../input/FormInput";
 import { signInUser, showAuthError } from "../../actions";
+import { required } from "../../utils/form-validator";
 
 class SignIn extends Component {
     constructor(props) {

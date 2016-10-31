@@ -5,8 +5,9 @@ import { compose } from "redux";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import FormInput, { required } from "../input/FormInput";
+import FormInput from "../input/FormInput";
 import { signUpUser, showAuthError } from "../../actions";
+import { required } from "../../utils/form-validator";
 
 class SignUp extends Component {
     constructor(props) {
@@ -89,7 +90,8 @@ const mapDispatchToProps = {
 
 // TODO: refactor this some other time
 const validateForm = (values, props) => {
-    const errors = required("email", "password", "confirmPassword")(values, props);
+    const errors = required("email", "password", "confirmPassword")(values,
+                                                                    props);
     if (values.password && values.password.length < 6) {
         errors.password = "Password has to be greater than 6 characters!";
     }

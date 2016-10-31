@@ -4,10 +4,10 @@
 const path = require("path");
 const fs = require("fs");
 
-let nodeModules = {};
+const nodeModules = {};
 fs.readdirSync("node_modules")
-  .filter((x) => [".bin"].indexOf(x) === -1)
-  .forEach((mod) => nodeModules[mod] = "commonjs " + mod);
+  .filter(x => [".bin"].indexOf(x) === -1)
+  .forEach(mod => nodeModules[mod] = `commonjs ${mod}`);
 
 module.exports = [
     {

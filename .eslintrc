@@ -15,7 +15,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "rules": {
     "no-case-declarations": 0,
